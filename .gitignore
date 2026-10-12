@@ -1,0 +1,113 @@
+# ---------------------------------------------------------------------------
+# TrailAsia Book — root .gitignore
+#
+# Covers the whole repo (client/ and server/). One file rather than several,
+# mirroring the convention used in ../TrailAsia.
+# ---------------------------------------------------------------------------
+
+# --- Dependencies ------------------------------------------------------------
+node_modules/
+.pnp/
+.pnp.js
+jspm_packages/
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+.pnpm-store/
+
+# --- Build output --------------------------------------------------------------
+dist/
+dist-ssr/
+build/
+out/
+*.tsbuildinfo
+
+# --- Secrets -------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+serviceAccount*.json
+
+# --- Logs and diagnostics -------------------------------------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.pid
+*.pid.lock
+
+# --- Tests and coverage ----------------------------------------------------------
+coverage/
+.nyc_output/
+*.lcov
+test-results/
+junit.xml
+.jest-cache/
+
+# --- Caches ------------------------------------------------------------------------
+.cache/
+.npm/
+.eslintcache
+.stylelintcache
+.turbo/
+.vite/
+.parcel-cache/
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# --- Editors and IDEs ---------------------------------------------------------------
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.sample.json
+.history/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.sublime-project
+
+# --- Merge, backup and patch artefacts -----------------------------------------------
+*.orig
+*.rej
+*.bak
+*.patch.tmp
+
+# --- Operating system ------------------------------------------------------------------
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+# Linux
+.fuse_hidden*
+.directory
+.Trash-*
+
+# --- Scratch ---------------------------------------------------------------------------
+tmp/
+temp/
+*.local
+scratch/

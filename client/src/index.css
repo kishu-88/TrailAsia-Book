@@ -1,0 +1,586 @@
+:root {
+  --ink: #211f1a;
+  --ink-soft: #5c5648;
+  --paper: #f8f4ec;
+  --paper-alt: #efe8d8;
+  --line: #ddd2b8;
+
+  --accent: #1f5f4f;
+  --accent-dark: #123a30;
+  --accent-soft: #e2ede8;
+  --accent-ink: #ffffff;
+
+  --terracotta: #b5562f;
+  --terracotta-soft: #f5e3d6;
+
+  --gold: #b8872b;
+  --gold-soft: #f4e9d2;
+
+  --sky: #3b6e8f;
+  --sky-soft: #e2ebf0;
+
+  --warn: #9a4a1f;
+
+  /* Reserved for the SOS button and nothing else, so it never has to compete
+     with terracotta for "this one is the emergency". */
+  --sos: #b3261e;
+  --sos-dark: #8c1d18;
+  --sos-soft: #fbe9e7;
+
+  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  font-family: var(--font-body);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+a { color: var(--accent); }
+a:hover { color: var(--accent-dark); }
+
+.shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+/* --- Nav ------------------------------------------------------------------- */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 24px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 40px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav a { text-decoration: none; }
+.nav .links { display: flex; align-items: center; gap: 22px; font-size: 0.95rem; font-weight: 500; }
+.nav .links a { color: var(--ink-soft); }
+.nav .links a:hover { color: var(--accent); }
+
+.logo { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+.logo__mark { flex: none; }
+.logo__word {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* --- Type -------------------------------------------------------------- */
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--ink); line-height: 1.2; }
+h1 { font-size: 2.4rem; margin: 0 0 10px; letter-spacing: -0.01em; }
+h2 { font-size: 1.55rem; margin: 40px 0 14px; }
+h3 { font-size: 1.15rem; margin: 0 0 4px; }
+p.lede { color: var(--ink-soft); font-size: 1.05rem; margin-top: 0; max-width: 60ch; }
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 8px;
+}
+
+/* --- Cards --------------------------------------------------------------- */
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px;
+  margin-bottom: 16px;
+  background: #fff;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card h3 { margin: 0 0 4px; }
+.card .meta { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 8px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; }
+
+/* --- Forms ----------------------------------------------------------------- */
+
+form { display: flex; flex-direction: column; gap: 14px; max-width: 480px; }
+
+label { display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; }
+label span { color: var(--ink-soft); font-weight: 500; }
+
+input, select, textarea {
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+textarea { min-height: 90px; resize: vertical; }
+
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 11px 20px;
+  border: none;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.15s ease;
+}
+
+button:hover:not(:disabled) { background: var(--accent-dark); }
+button:disabled { opacity: 0.6; cursor: default; }
+button.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+button.secondary:hover:not(:disabled) { background: var(--accent-soft); }
+
+.error {
+  color: var(--warn);
+  background: #fbeee4;
+  border: 1px solid #e9c9a8;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.notice {
+  background: var(--accent-soft);
+  border: 1px solid #bcdccf;
+  padding: 14px 16px;
+  border-radius: 6px;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: var(--line);
+  color: var(--ink-soft);
+  text-transform: capitalize;
+}
+
+.status-pill--warn { background: #fbeee4; color: var(--warn); }
+
+.doc-note { margin: 4px 0 0; font-size: 0.82rem; }
+
+.status-pill--on { background: var(--accent-soft); color: var(--accent-dark); }
+
+/* --- Safety: SOS and location sharing ------------------------------------- */
+
+.nav .links a.nav__sos {
+  background: var(--sos);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 5px 14px;
+  border-radius: 999px;
+}
+
+.nav .links a.nav__sos:hover { background: var(--sos-dark); color: #fff; }
+
+.safety { max-width: 560px; display: flex; flex-direction: column; gap: 14px; }
+.safety p { margin: 0; }
+.safety .meta { color: var(--ink-soft); font-size: 0.9rem; }
+
+/* Big enough to hit with a cold or shaking hand, and the only red thing on
+   the page. */
+.sos-button {
+  align-self: stretch;
+  min-height: 76px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: var(--sos);
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  /* No fade between the two states. The label turns red the instant the
+     button is armed, and a background still fading from red to white behind
+     it leaves the words unreadable for exactly the moment they matter. */
+  transition: none;
+}
+
+.sos-button:hover:not(:disabled) { background: var(--sos-dark); }
+.sos-button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* The second tap. Inverted rather than merely darker, so the change of state
+   is unmistakable without relying on reading the new label. */
+.sos-button--armed {
+  background: #fff;
+  color: var(--sos);
+  box-shadow: inset 0 0 0 4px var(--sos);
+}
+
+.sos-button--armed:hover:not(:disabled) { background: var(--sos-soft); }
+
+.safety__hint { color: var(--ink-soft); font-size: 0.9rem; }
+
+.safety-alert {
+  border: 2px solid var(--sos);
+  background: var(--sos-soft);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.safety-alert__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--sos-dark);
+}
+
+.safety-alert button.secondary { background: #fff; margin-top: 6px; }
+
+.safety-card { margin-bottom: 0; display: flex; flex-direction: column; gap: 12px; }
+.safety-card__header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.safety-card__header h3 { margin: 0; }
+.safety-card__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.safety-card .safety-card__foot { margin: 0; font-size: 0.85rem; }
+
+.safety-page__trip { max-width: 560px; margin-bottom: 18px; }
+.safety-page > .meta { color: var(--ink-soft); font-size: 0.9rem; }
+
+/* --- Notification bell --------------------------------------------------- */
+
+.bell { position: relative; display: flex; align-items: center; }
+
+.bell__trigger {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.bell__trigger:hover:not(:disabled) { background: transparent; color: var(--accent); }
+
+.bell__badge {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  background: var(--terracotta);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 3px 5px;
+  border-radius: 999px;
+  min-width: 16px;
+  text-align: center;
+}
+
+.bell__panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 320px;
+  max-height: 380px;
+  overflow-y: auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(33, 31, 26, 0.14);
+  z-index: 20;
+  padding: 10px;
+}
+
+.bell__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  padding: 4px 6px 8px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 6px;
+}
+
+.bell__mark-all {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0;
+  cursor: pointer;
+}
+
+.bell__mark-all:hover:not(:disabled) { background: transparent; color: var(--accent-dark); }
+
+.bell__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+
+.bell__item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bell__item:hover:not(:disabled) { background: var(--paper-alt); color: inherit; }
+
+.bell__item--unread { background: var(--accent-soft); }
+.bell__item--unread:hover:not(:disabled) { background: var(--accent-soft); }
+
+.bell__item-title { font-weight: 600; font-size: 0.88rem; color: var(--ink); }
+.bell__item-body { font-size: 0.82rem; color: var(--ink-soft); }
+
+/* --- Hero banner, destination cards, chips ------------------------------ */
+
+.hero {
+  height: 300px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 22px;
+  border: 1px solid var(--line);
+  position: relative;
+}
+
+.dest-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+.dest-card:hover { box-shadow: 0 8px 24px rgba(33, 31, 26, 0.08); transform: translateY(-2px); }
+
+.dest-card__image {
+  height: 150px;
+  margin: -22px -22px 14px;
+  border-radius: 10px 10px 0 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.dest-card__summary {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+
+.dest-card__chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+
+.chip {
+  display: inline-block;
+  padding: 3px 11px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+.chip--price {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+/* Fitness-level badge — a warm-to-cool scale so "strenuous" reads as more
+   demanding without relying on color alone (the word is always shown too). */
+.chip--fitness-easy { background: var(--sky-soft); border-color: var(--sky); color: var(--sky); }
+.chip--fitness-moderate { background: var(--gold-soft); border-color: var(--gold); color: #8a670f; }
+.chip--fitness-challenging,
+.chip--fitness-strenuous { background: var(--terracotta-soft); border-color: var(--terracotta); color: var(--terracotta); }
+
+/* --- Testimonials --------------------------------------------------------- */
+
+.testimonial__quote { font-family: var(--font-display); font-style: italic; font-size: 1.05rem; margin: 0 0 10px; }
+
+/* --- Multi-select checkbox list ------------------------------------------- */
+
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 12px;
+  background: #fff;
+}
+
+.checkbox-list__item { flex-direction: row !important; align-items: center; gap: 8px !important; font-size: 0.95rem; color: var(--ink); }
+.checkbox-list__item input { width: auto; }
+
+/* --- Tables (payments, documents) ----------------------------------------- */
+
+.table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 0.9rem; }
+.table th, .table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.table th { color: var(--ink-soft); font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.02em; }
+
+/* --- Travel-guide sections on a destination page -------------------------- */
+
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin: 18px 0 8px; }
+
+.guide-card {
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.guide-card h3 { font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); margin: 0 0 8px; }
+.guide-card p { margin: 0; }
+.guide-card ul { margin: 0; padding-left: 18px; }
+.guide-card li { margin-bottom: 4px; }
+
+/* --- Brand-page hub cards (About) ------------------------------------------ */
+
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin: 18px 0 32px; }
+
+.hub-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px;
+  transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.hub-card:hover { box-shadow: 0 8px 24px rgba(33, 31, 26, 0.08); transform: translateY(-2px); border-color: var(--accent); }
+.hub-card h3 { color: var(--ink); margin-bottom: 6px; }
+.hub-card p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+.hub-card .hub-card__arrow { color: var(--accent); font-weight: 600; font-size: 0.85rem; display: inline-block; margin-top: 10px; }
+
+/* --- Team members ----------------------------------------------------------- */
+
+.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 18px 0; }
+
+.team-card { text-align: left; }
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.team-card .role { color: var(--terracotta); font-size: 0.85rem; font-weight: 600; margin: 0 0 8px; }
+.team-card p:last-child { color: var(--ink-soft); font-size: 0.92rem; margin: 0; }
+
+/* --- Value/pillar list (Why us, Sustainability) ---------------------------- */
+
+.pillar-list { display: grid; gap: 20px; margin: 18px 0 32px; }
+
+.pillar {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.pillar__mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  flex: none;
+}
+
+.pillar h3 { margin-bottom: 4px; }
+.pillar p { margin: 0; color: var(--ink-soft); }
+
+/* --- Footer ---------------------------------------------------------------- */
+
+.footer {
+  background: var(--paper-alt);
+  border-top: 1px solid var(--line);
+  margin-top: 56px;
+}
+
+.footer__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 20px 28px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 24px;
+}
+
+.footer__brand p { color: var(--ink-soft); font-size: 0.88rem; max-width: 32ch; margin: 12px 0 0; }
+
+.footer__col h4 {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+
+.footer__col { display: flex; flex-direction: column; gap: 8px; font-size: 0.92rem; }
+.footer__col a { text-decoration: none; color: var(--ink); }
+.footer__col a:hover { color: var(--accent); }
+
+.footer__meta {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px 20px 28px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .footer__inner { grid-template-columns: 1fr; }
+  .row-2 { grid-template-columns: 1fr; }
+  .nav { padding: 14px 16px; }
+  /* With the SOS link a signed-in traveller has six items here, which is one
+     more than fits across a phone. Wrap onto a second row instead of pushing
+     "Sign out" off the edge and making the whole page scroll sideways. */
+  .nav .links { flex-wrap: wrap; gap: 8px 16px; }
+  .nav .links a { white-space: nowrap; }
+}
